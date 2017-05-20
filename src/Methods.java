@@ -128,6 +128,6 @@ public  class Methods {
     }
 
     public static void listAllExams(TextArea txtArea) {
-        
+
     }
 }

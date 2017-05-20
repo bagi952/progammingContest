@@ -5,13 +5,13 @@ import accounts.Takmicar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -50,6 +50,8 @@ public class Main extends Application {
             if(ans) {
                 if (txtName.getText().split("")[0].equals("k")) {
                     window.setScene(komisijaDisplay);
+                    window.setTitle("Komisija");
+                    window.show();
                     System.out.println("uradih ovo sa k");
 
                 }
@@ -77,13 +79,13 @@ public class Main extends Application {
         grid.setVgap(8);
         grid.setHgap(10);
 
-        GridPane.setConstraints(name,0,0);
-        GridPane.setConstraints(txtName,1,0);
-        GridPane.setConstraints(pass,0,1);
-        GridPane.setConstraints(txtPass,1,1);
-        GridPane.setConstraints(loginButton,1,2);
-        GridPane.setConstraints(seeRankListButton,1,3);
-        GridPane.setConstraints(txtArea,1,4);
+        grid.setConstraints(name,0,0);
+        grid.setConstraints(txtName,1,0);
+        grid.setConstraints(pass,0,1);
+        grid.setConstraints(txtPass,1,1);
+        grid.setConstraints(loginButton,1,2);
+        grid.setConstraints(seeRankListButton,1,3);
+        grid.setConstraints(txtArea,1,4);
         grid.getChildren().addAll(name,txtName,pass,txtPass,loginButton,txtArea,seeRankListButton);
 
         logIn = new Scene(grid, 325,400);
@@ -94,38 +96,27 @@ public class Main extends Application {
 
             Label markWorkHeading = new Label("GIVE A GRADE BY ENTERING A NAME");
             TextField markWork = new TextField();
+            markWork.setMaxWidth(400);
             markWork.setPromptText("Enter a grade");
             TextField nameForWork = new TextField();
-            nameForWork.setPromptText("Enter a name of competitioner");
+            nameForWork.setMaxWidth(400);
+            nameForWork.setPromptText("Enter a name of competitior");
             Button markWorkButton = new Button("Give a grade");
+            markWorkButton.setMaxWidth(400);
             Button listAllExams = new Button("List all of exams");
+            listAllExams.setMaxWidth(400);
             TextArea txtAreaforAllExams = new TextArea();
+
             listAllExams.setOnAction(e->Methods.listAllExams(txtAreaforAllExams));
+            txtAreaforAllExams.setMaxWidth(400);
 
-            GridPane gridForKomisija = new GridPane();
-            gridForKomisija.setPadding(new Insets(10,10,10,10));
-            gridForKomisija.setVgap(8);
-            gridForKomisija.setHgap(10);
+            VBox layoutKomisija = new VBox(10);
+            layoutKomisija.setAlignment(Pos.BASELINE_CENTER);
 
-             GridPane.setConstraints(markWorkHeading,0,0);
-             GridPane.setConstraints(markWork,1,0);
-             GridPane.setConstraints(nameForWork,2,0);
-
-             GridPane.setConstraints(markWorkButton,3,0);
-             GridPane.setConstraints(listAllExams,4,0);
-             GridPane.setConstraints(txtAreaforAllExams,5,0);
-
-             komisijaDisplay = new Scene(gridForKomisija,500,500);
+            layoutKomisija.getChildren().addAll(markWorkHeading, markWork, nameForWork,markWorkButton,listAllExams,txtAreaforAllExams);
+        komisijaDisplay = new Scene(layoutKomisija,500,500);
              
              //end of scene for komisija
-
-
-
-
-
-
-
-
 
 
 
